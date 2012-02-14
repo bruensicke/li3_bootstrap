@@ -1,6 +1,7 @@
 <?php
 
 use lithium\net\http\Router;
+use lithium\action\Response;
 
 Router::connect('/li3_bootstrap/{:path:js|css}/{:file}.{:type}', array(), function($request) {
 	$req = $request->params;
