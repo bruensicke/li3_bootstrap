@@ -13,7 +13,7 @@
 			</a>
 
 			<a href="<?=$this->url('/'); ?>" class="brand">
-				<span><?= $this->app->name(); ?></span>
+				<span>Home</span>
 			</a>
 
 			<div class="nav-collapse">
