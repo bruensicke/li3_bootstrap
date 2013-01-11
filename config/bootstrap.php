@@ -11,7 +11,7 @@ use li3_less\core\Less;
  *
  * If that is the case, we can directly work with the
  * less files, that is much more flexible. To get this
- * up and running, you need to add li3_less as a library 
+ * up and running, you need to add li3_less as a library
  * and load it _before_ the li3_bootstrap library like this:
  *
  *     Libraries::add('li3_less');
