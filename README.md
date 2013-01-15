@@ -6,7 +6,7 @@ Lithium plugin to easily use [twitters bootstrap](https://github.com/twitter/boo
 
 Add submodule to your li3 libraries:
 
-	git submodule add git@github.com:bruensicke/li3_bootstrap.git libraries/li3_bootstrap
+	git submodule add https://github.com/bruensicke/li3_bootstrap.git libraries/li3_bootstrap
 
 and activate it in you app (`config/bootstrap/libraries.php`), of course:
 
