@@ -95,7 +95,7 @@ tools.tabs = function() {
 		window.location.hash = $(e.target).attr('href').replace('#', '');
 	});
 	if (current_mode = window.location.hash.replace('#', '')) {
-		$('a[href="#'+current_mode+'"]').tab('show');;
+		$('a[href="#'+current_mode+'"]').addClass('active').tab('show');
 	}
 };
 tools.triggers = function() {
