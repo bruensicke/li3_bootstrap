@@ -1,4 +1,4 @@
-<ul class="{{^class}}nav{{/class}}{{#class}}{{ class }}{{/class}}{{#active}} active{{/active}}">
+<ul class="{{^class}}nav{{/class}}{{#class}}{{ class }}{{/class}}{{#active}} active{{/active}}"{{#id}} id="{{ id }}"{{/id}}>
 	{{#items}}
 		<li class="{{#class}} {{ class }}{{/class}}{{#active}} active{{/active}}">
 			{{#url}}
