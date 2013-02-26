@@ -72,8 +72,7 @@ class Tab extends \lithium\template\Helper {
 			$tabs[] = $tab;
 		}
 		$params = $options += compact('tabs', 'panes');
-		$result = $this->mustache->render('tabs', $params, array('library' => 'li3_bootstrap'));
-		return $result;
+		return $this->mustache->render('tabs', $params, array('library' => 'li3_bootstrap'));
 	}
 
 	protected function _tab($data = array(), array $options = array()) {
