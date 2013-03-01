@@ -1,7 +1,7 @@
 var tools = {};
 tools.array_values = function(input) {
 	var tmp_arr = [],
-	    key = '';
+		key = '';
 	for (key in input) {
 		tmp_arr[tmp_arr.length] = input[key];
 	}
@@ -18,7 +18,7 @@ tools.bytes = function() {
 		var bytes = $(this).data('size');
 		if (bytes < 1) return $(this).html('n/a');
 		var sizes = ['b', 'k', 'm', 'g', 't', 'p', 'e', 'z', 'y'],
-		    i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+			i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
 		return $(this).html(Math.round(bytes / Math.pow(1024, i), 2) + sizes[i]);
 	});
 };
@@ -49,7 +49,7 @@ tools.duration = function() {
 tools.number = function(e) {
 	var theEvent = e || window.event;
 	var key = theEvent.keyCode || theEvent.which;
-	if(key != 13 && key != 9) { //allow enter and tab
+	if(key != 13 && key != 9 && key != 8 && key != 46) { //allow enter and tab, backspace and delete
 		key = String.fromCharCode( key );
 		var regex = /[0-9]|\./;
 		if( !regex.test(key)) {
@@ -68,9 +68,9 @@ tools.numeric = function() {
 	});
 	$("body").on("change","input[type=text].numeric,.numeric", function(e){
 		var t = e.target,
-		    min = $(t).attr("min"),
-		    max = $(t).attr("max"),
-		    val = parseInt($(t).val());
+			min = $(t).attr("min"),
+			max = $(t).attr("max"),
+			val = parseInt($(t).val(), 10);
 		if( val < min || max < val) {
 			alert("Error!");
 			$(t).val($(t).data('oldValue'));
@@ -84,7 +84,7 @@ tools.dataswitch = function() {
 			target = name + '_' + val;
 
 		$('[class*="' + name + '_"]').hide();
-		if (!this.value == '') {
+		if (this.value !== '') {
 			$('div.'+target).show();
 		}
 	});
