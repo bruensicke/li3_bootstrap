@@ -2,6 +2,7 @@
 <title><?php echo $this->title(); ?></title>
 <?php echo $this->html->style(array(
 	'/li3_bootstrap/css/bootstrap.min',
+	'/li3_bootstrap/css/bootstrap-select.min',
 	'/li3_bootstrap/css/font-awesome',
 	'custom',
 	'app',
