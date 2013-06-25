@@ -3,8 +3,31 @@
 use lithium\core\Libraries;
 use lithium\action\Dispatcher;
 use lithium\action\Response;
+use lithium\net\http\Media;
 
 use li3_less\core\Less;
+
+define('LI3_BOOTSTRAP_PATH', dirname(__DIR__));
+
+/*
+ * this filter allows automatic linking and loading of assets from `webroot` folder
+ */
+Dispatcher::applyFilter('_callable', function($self, $params, $chain) {
+	list($tmp, $library, $asset) = explode('/', $params['request']->url, 3) + array("", "");
+	if ($asset && $library == 'li3_bootstrap' && ($path = Media::webroot($library)) && file_exists($file = "{$path}/{$asset}")) {
+		return function() use ($file) {
+			$info = pathinfo($file);
+			$media = Media::type($info['extension']);
+			$content = (array) $media['content'];
+
+			return new Response(array(
+				'headers' => array('Content-type' => reset($content)),
+				'body' => file_get_contents($file)
+			));
+		};
+	}
+	return $chain->next($self, $params, $chain);
+});
 
 /**
  * Here we check, if there is a library called `li3_less`
@@ -21,8 +44,6 @@ use li3_less\core\Less;
 if (is_null($config = Libraries::get('li3_less'))) {
 	return; // what a pity - it is not.
 }
-
-define('LI3_BOOTSTRAP_PATH', dirname(__DIR__));
 
 Dispatcher::applyFilter('run', function($self, $params, $chain) {
 
