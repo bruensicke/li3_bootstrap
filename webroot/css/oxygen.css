@@ -1,0 +1,11 @@
+@font-face {
+	font-family: 'Oxygen';
+	font-style: normal;
+	font-weight: 400;
+	src: local('Oxygen'), local('Oxygen-Regular'), url('../font/oxygen.woff') format('woff');
+}
+
+html, body {
+	font-family: 'Oxygen';
+	color: #222;
+}
