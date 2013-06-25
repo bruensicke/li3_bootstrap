@@ -8,6 +8,7 @@
 					<i class="icon-{{ icon }}"></i>
 				{{/icon}}
 				{{#name}}{{ name }}{{/name}}
+				{{#content}}{{{ content }}}{{/content}}
 				{{#children}} <b class="caret"></b>{{/children}}
 			{{#url}}
 				</a>
@@ -23,6 +24,7 @@
 									<i class="icon-{{ icon }}"></i>
 								{{/icon}}
 								{{#name}}{{ name }}{{/name}}
+								{{#content}}{{{ content }}}{{/content}}
 							{{#url}}
 								</a>
 							{{/url}}
