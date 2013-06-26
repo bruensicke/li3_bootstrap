@@ -11,6 +11,7 @@
 <?php echo $this->html->script('/li3_bootstrap/js/head.js'); ?>
 <?php echo $this->head(); ?>
 <?php echo $this->scripts(); ?>
+<?php echo $this->styles(); ?>
 <?php echo $this->html->link('Icon', null, array('type' => 'icon')); ?>
 
 <meta name="MSSmartTagsPreventParsing" content="true" />
