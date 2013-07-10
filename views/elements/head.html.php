@@ -7,6 +7,7 @@
 	'custom',
 	'app',
 	'/li3_bootstrap/css/bootstrap-responsive.min',
+	'/li3_bootstrap/css/bootstrap-datetimepicker.min',
 )); ?>
 <?php echo $this->html->script('/li3_bootstrap/js/head.js'); ?>
 <?php echo $this->head(); ?>
