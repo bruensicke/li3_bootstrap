@@ -47,6 +47,15 @@ class Form extends \lithium\template\helper\Form {
 		'submit-button'  => '<button type="submit"{:options}>{:name}</button>'
 	);
 
+	public function button($title = null, array $options = array()) {
+		if (isset($options['icon'])) {
+			$icon = $options['icon'];
+			$title = sprintf('<i class="icon-%s"></i> %s', $icon, $title);
+			$options['escape'] = false;
+		}
+		return parent::button($title, $options);
+	}
+
 	public function create($bindings = null, array $options = array()) {
 		$result = parent::create($bindings, $options);
 		if ($this->_binding) {
