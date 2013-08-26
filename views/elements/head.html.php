@@ -2,11 +2,11 @@
 <title><?php echo $this->title(); ?></title>
 <?php echo $this->html->style(array(
 	'/li3_bootstrap/css/bootstrap.min',
+	'/li3_bootstrap/css/bootstrap-theme.min',
 	'/li3_bootstrap/css/bootstrap-select.min',
 	'/li3_bootstrap/css/font-awesome',
 	'custom',
 	'app',
-	'/li3_bootstrap/css/bootstrap-responsive.min',
 	'/li3_bootstrap/css/bootstrap-datetimepicker.min',
 )); ?>
 <?php echo $this->html->script('/li3_bootstrap/js/head.js'); ?>
