@@ -219,10 +219,10 @@ a [class*=" icon-"] {
 .btn [class*=" icon-"].icon-spin.icon-large {
   line-height: .8em;
 }
-.btn.btn-small [class^="icon-"].pull-left.icon-2x,
-.btn.btn-small [class*=" icon-"].pull-left.icon-2x,
-.btn.btn-small [class^="icon-"].pull-right.icon-2x,
-.btn.btn-small [class*=" icon-"].pull-right.icon-2x {
+.btn.btn-sm [class^="icon-"].pull-left.icon-2x,
+.btn.btn-sm [class*=" icon-"].pull-left.icon-2x,
+.btn.btn-sm [class^="icon-"].pull-right.icon-2x,
+.btn.btn-sm [class*=" icon-"].pull-right.icon-2x {
   margin-top: .25em;
 }
 .btn.btn-large [class^="icon-"],
