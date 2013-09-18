@@ -42,7 +42,9 @@ tools.datetime = function() {
 tools.duration = function() {
 	$("[data-duration]").each(function(){
 		var seconds = $(this).data('duration');
-		if (seconds < 1) return $(this).html('n/a');
+		if (seconds < 1) {
+			return $(this).html(seconds.toString().substr(0,4) * 1000 + 'ms');
+		}
 		return $(this).html(seconds.toString().substr(0,4) + 's');
 	});
 };
