@@ -9,14 +9,14 @@
 				{{/icon}}
 				{{#name}}{{ name }}{{/name}}
 				{{#content}}{{{ content }}}{{/content}}
-				{{#children}} <b class="caret"></b>{{/children}}
+				{{#children}} <span class="caret"></span>{{/children}}
 			{{#url}}
 				</a>
 			{{/url}}
 			{{#children}}
 				<ul class="dropdown-menu" role="menu">
 					{{#items}}
-						<li class="{{#class}} {{ class }}{{/class}}{{#active}} active{{/active}}">
+						<li class="{{#active}} active{{/active}}">
 							{{#url}}
 								<a href="{{ url }}">
 							{{/url}}
