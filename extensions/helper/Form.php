@@ -2,6 +2,7 @@
 
 namespace li3_bootstrap\extensions\helper;
 
+use lithium\util\Set;
 use lithium\util\Inflector;
 use lithium\core\Libraries;
 
@@ -21,7 +22,7 @@ class Form extends \lithium\template\helper\Form {
 		'errors'         => '{:raw}',
 		'input'          => '<input type="{:type}" name="{:name}"{:options} />',
 		'file'           => '<input type="file" name="{:name}"{:options} />',
-		'form'           => '<form action="{:url}"{:options}>{:append}',
+		'form'           => '<form action="{:url}"{:options} role="form">{:append}',
 		'form-end'       => '</form>',
 		'hidden'         => '<input type="hidden" name="{:name}"{:options} />',
 		'field'          => '<div{:wrap}>{:label}<div class="controls">{:input}{:error}</div></div>',
@@ -46,6 +47,19 @@ class Form extends \lithium\template\helper\Form {
 		'date'           => '<input type="text" data-date-format="yyyy-mm-dd" class="date-field" name="{:name}"{:options} />',
 		'submit-button'  => '<button type="submit"{:options}>{:name}</button>'
 	);
+
+	/**
+	 * Sets up defaults and passes to parent to setup class.
+	 *
+	 * @param  array $config Configuration options.
+	 * @return void
+	 */
+	public function __construct(array $config = array()) {
+		$defaults = array(
+			'base' => array('class' => 'form-control'),
+		);
+		parent::__construct(Set::merge($defaults, $config));
+	}
 
 	public function button($title = null, array $options = array()) {
 		if (isset($options['icon'])) {
@@ -85,7 +99,7 @@ class Form extends \lithium\template\helper\Form {
 		if (!isset($options['wrap']['class'])) {
 			$options['wrap']['class'] = '';
 		}
-		$options['wrap']['class'] .= ' control-group';
+		$options['wrap']['class'] .= ' form-group';
 		if (isset($meta['required']) && $meta['required']) {
 			$options['required'] = true;
 			$options['wrap']['class'] .= ' required';
@@ -94,7 +108,7 @@ class Form extends \lithium\template\helper\Form {
 		if ($this->_binding) {
 			$errors = $this->_binding->errors();
 			if (isset($errors[$name])) {
-				$options['wrap']['class'] .= ' error';
+				$options['wrap']['class'] .= ' has-error';
 			}
 		}
 
