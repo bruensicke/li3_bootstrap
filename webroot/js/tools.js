@@ -1,4 +1,8 @@
 var tools = {};
+tools.validations = [
+	['[required]', 'presence', 'Must not be empty.'],
+	['.numeric', 'integer', 'Must be a number.']
+];
 tools.array_values = function(input) {
 	var tmp_arr = [],
 		key = '';

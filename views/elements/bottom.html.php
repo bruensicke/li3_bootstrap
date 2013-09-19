@@ -11,6 +11,7 @@ head.js(
 	{ slug: "<?php echo $this->path('/li3_bootstrap/js/jquery.slug.js'); ?>"},
 	{ formParams: "<?php echo $this->path('/li3_bootstrap/js/jquery.formParams.js'); ?>"},
 	{ tools: "<?php echo $this->path('/li3_bootstrap/js/tools.js'); ?>"},
+	{ nod: "<?php echo $this->path('/li3_bootstrap/js/nod.min.js'); ?>"},
 	{ app: "<?php echo $this->path('/js/app.js'); ?>"}
 );
 </script>
