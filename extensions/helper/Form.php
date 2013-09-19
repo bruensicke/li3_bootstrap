@@ -17,7 +17,7 @@ class Form extends \lithium\template\helper\Form {
 		'checkbox'       => '<input type="checkbox" name="{:name}"{:options} />',
 		'checkbox-multi' => '<input type="checkbox" name="{:name}[]"{:options} />',
 		'checkbox-multi-group' => '{:raw}',
-		'error'          => '<span class="help-inline">{:content}</span>',
+		'error'          => '<span class="help-block">{:content}</span>',
 		'errors'         => '{:raw}',
 		'input'          => '<input type="{:type}" name="{:name}"{:options} />',
 		'file'           => '<input type="file" name="{:name}"{:options} />',
@@ -77,19 +77,26 @@ class Form extends \lithium\template\helper\Form {
 	}
 
 	public function field($name, array $options = array()) {
-		$meta = (isset($this->schema) && is_object($this->schema)) ? $this->schema->fields($name) : array();
+		if (is_array($name)) {
+			return $this->_fields($name, $options);
+		}
+		list(, $options, $template) = $this->_defaults(__FUNCTION__, $name, $options);
 
-		if (!isset($options['wrap'])) {
-			$options['wrap'] = array();
+		$meta = (isset($this->schema) && is_object($this->schema))
+			? $this->schema->fields($name)
+			: array();
+
+		$defaults = array(
+			'label' => null,
+			'type' => isset($options['list']) ? 'select' : 'text',
+			'template' => $template,
+			'wrap' => array('class' => 'control-group'),
+			'list' => null
+		);
+		if (!empty($meta['required'])) {
+			$defaults['required'] = true;
 		}
-		if (!isset($options['wrap']['class'])) {
-			$options['wrap']['class'] = '';
-		}
-		$options['wrap']['class'] .= ' control-group';
-		if (isset($meta['required']) && $meta['required']) {
-			$options['required'] = true;
-			$options['wrap']['class'] .= ' required';
-		}
+		list($options, $field) = $this->_options($defaults, $options);
 
 		if ($this->_binding) {
 			$errors = $this->_binding->errors();
@@ -99,14 +106,25 @@ class Form extends \lithium\template\helper\Form {
 		}
 
 		# Auto-populate select-box lists from validation rules or methods
-		if (isset($options['type']) and $options['type'] == 'select' and !isset($options['list'])) {
+		if ($options['type'] == 'select' && empty($options['list'])) {
 			$options = $this->_autoSelects($name, $options);
 		}
+
 		return parent::field($name, $options);
 	}
 
 	protected function _autoSelects($name, array $options = array()) {
+		$model = $this->_binding->model();
+		$method = Inflector::pluralize($name);
 		$rules = $this->instance->validates;
+
+		if (method_exists($model, $method)) {
+			$list = $model::$method();
+			if (!empty($list)) {
+				$options['list'] = $list;
+				return $options;
+			}
+		}
 
 		if (isset($rules[$name])) {
 			if (is_array($rules[$name][0])) {
