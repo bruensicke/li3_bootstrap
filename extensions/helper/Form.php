@@ -113,16 +113,6 @@ class Form extends \lithium\template\helper\Form {
 		return parent::field($name, $options);
 	}
 
-	public function select($name, $list = array(), array $options = array()) {
-		$defaults = array('multiple' => false, 'hidden' => true);
-		$options += $defaults;
-		$out = parent::select($name, $list, $options);
-		if($options['multiple'] && $options['hidden']) {
-			return $this->hidden($name.'[]', array('value' => '', 'id' => false)) . $out;
-		}
-		return $out;
-	}
-
 	protected function _autoSelects($name, array $options = array()) {
 		$model = $this->_binding->model();
 		$method = Inflector::pluralize($name);
